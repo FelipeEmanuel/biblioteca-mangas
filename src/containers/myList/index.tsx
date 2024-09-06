@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../../service/supabaseService";
+import { Box, Container, Typography } from "@mui/material";
+import AppBarSearch from "../../components/app.bar";
 
 interface User {
     id: number
@@ -21,18 +23,27 @@ function MyList() {
         fetchUsers();
     }, []);
     return (
-        <div>
-            <h2>Users no Supabase</h2>
-            <ul>
-                {users.map((user: User) => (
-                <li key={user.id}>
-                    <p>{user.name}</p>
-                    <p>{user.email}</p>
-                    <p>{user.role}</p>
-                </li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <Container fixed>
+                <AppBarSearch/>
+                <Box>
+                    <Typography>
+                        Users no Supabase
+                    </Typography>
+                    <ul>
+                        {users.map((user: User) => (
+                        <li key={user.id}>
+                            <p>{user.name}</p>
+                            <p>{user.email}</p>
+                            <p>{user.role}</p>
+                        </li>
+                        ))}
+                    </ul>
+                </Box>
+            </Container>
+            
+        </>
+                
     )
 }
 
